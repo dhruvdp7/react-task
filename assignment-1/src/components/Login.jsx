@@ -2,26 +2,25 @@ import React, { Component } from "react";
 import Input from "./Input";
 import logo from "../assets/images/qalogo.jpg";
 import logincard from "../assets/images/login2.jpg";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import Information from "../components/Information";
-// import App from "../App";
+import { BrowserRouter as Router, Link, Redirect } from "react-router-dom";
 
 class Login extends Component {
   constructor(props) {
     super(props);
-
+   
     this.state = {
       username: "",
-      password: ""
+      password: "",
+      nextPage: false
     };
   }
 
   nextStep = event => {
-    event.preventDefault();
+    // event.preventDefault();
     let details = this.state;
 
     if (details.username == "qainfotech" && details.password == "qainfotech") {
-      window.location = "/adminView";
+      this.setState({ nextPage: true });
     } else if (details.username == "" || details.password == "") {
       alert("Either of the fields missing");
       this.setState({
@@ -64,9 +63,12 @@ class Login extends Component {
   };
 
   render() {
+    if (this.state.nextPage) {
+      return <Redirect to="/information" />;
+    }
+
     return (
-      // <Router>
-      //   <Route exact path="/reset" component={Information} />
+      <Router>
         <div className="container">
           <div className="row">
             <div className="col-md-3" />
@@ -100,22 +102,23 @@ class Login extends Component {
                   />
                 </div>
                 <div className="form-group button-group">
-                  <button
-                    type="submit"
-                    className="btn btn-success"
-                    onClick={this.nextStep}
-                  >
-                    Continue
-                  </button>
-                  <Link to="/reset">
+                  <Link to="/information">
                     <button
-                      type="reset"
-                      className="btn btn-danger"
-                      onClick={this.reset}
+                      type="button"
+                      className="btn btn-success"
+                      onClick={this.nextStep}
                     >
-                      Reset
+                      Continue
                     </button>
                   </Link>
+
+                  <button
+                    type="reset"
+                    className="btn btn-danger"
+                    onClick={this.reset}
+                  >
+                    Reset
+                  </button>
                 </div>
               </form>
             </div>
@@ -123,7 +126,7 @@ class Login extends Component {
             <div className="col-md-3" />
           </div>
         </div>
-      // </Router>
+      </Router>
     );
   }
 }

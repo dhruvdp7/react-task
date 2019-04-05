@@ -1,26 +1,27 @@
-body{
+body {
 	background: url("../images/login.png") no-repeat;
 	background-size: cover;
 	height: 100%;
 }
+
 .container{
-    padding:3rem;
+  padding:3rem;
 }
 .image-logo{
-    display: flex;
-    justify-content: center;
-    padding-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 1rem;
 }
 .logo{
-    width:100%;
-    border-radius: 5px;
+  width:100%;
+  border-radius: 5px;
 }
 .image-login{
     display: flex;
     justify-content: center;
 }
 form{
-    padding-top:2rem;
+    padding-top: 2rem;
     width: 100%;
     /* display: flex;
     flex-direction: column;
@@ -56,3 +57,16 @@ form{
         display:flex;
         justify-content: center;
     }
+
+.information{
+    padding-top:20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.element{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
