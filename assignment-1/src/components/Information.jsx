@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Input from "./Input";
 import Select from "./Select";
 
-import { BrowserRouter as Router, Link, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Link, Redirect, } from "react-router-dom";
 
 class Information extends Component {
   constructor(props) {
@@ -35,6 +35,7 @@ class Information extends Component {
     this.setState({
       email: event.target.value
     });
+    // if (/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test($('#email').val())) { /* return true */ }
   };
   handleMobileno = event => {
     this.setState({
@@ -56,15 +57,15 @@ class Information extends Component {
       photo: event.target.value
     });
   };
-  handleSubmit = event => {
-    this.props.onSelectLanguage(this.state);
+  handleSubmit = event => {    
     this.setState({
       nextPage: 1
     });
-    // event.preventDefault();
-    this.data.push(this.state);
-    console.log(this.data);
-    // localStorage.setItem("data", this.state);
+   
+    // this.data.push(this.state);
+    // console.log(this.data);
+    this.props.renderDetails(this.state.firstname,this.state.lastname,this.state.email,this.state.mobileno,this.state.gender,this.state.photo);
+   
   };
   handleBack = event => {
     this.setState({
@@ -76,10 +77,10 @@ class Information extends Component {
   };
 
   render() {
-    if (this.state.nextPage == 1) {
-      return <Redirect to="/home" />;
+    if (this.state.nextPage === 1) {
+      return <Redirect to="/home"/>;
     }
-    if (this.state.prevPage == 1) {
+    if (this.state.prevPage === 1) {
       return <Redirect to="/" />;
     }
     return (
@@ -178,7 +179,7 @@ class Information extends Component {
                     <Link to="/home">
                       <button
                         type="submit"
-                        class="btn btn-success"
+                        className="btn btn-success"
                         onClick={this.handleSubmit}
                       >
                         Continue
